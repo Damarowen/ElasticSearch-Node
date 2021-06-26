@@ -2,10 +2,12 @@
 const elasticsearchLoading = require("elasticsearch");
 const indexNameLoading = "cities";
 const dataJsonFile = "../../data/cities.json";
+
 // instantiate an Elasticsearch client
 const loadIndexclient = new elasticsearchLoading.Client({
   hosts: ["http://localhost:9200"],
 });
+
 // ping the client to be sure Elasticsearch is up
 loadIndexclient.ping(
   {
@@ -20,6 +22,7 @@ loadIndexclient.ping(
     }
   }
 );
+
 // create a new index
 loadIndexclient.indices.create(
   {
@@ -33,6 +36,7 @@ loadIndexclient.indices.create(
     }
   }
 );
+
 // add 1 data to the index that has already been created
 loadIndexclient.index(
   {
@@ -51,8 +55,10 @@ loadIndexclient.index(
 
 // require the array of cities that was downloaded
 const cities = require(dataJsonFile);
+
 // declare an empty array called bulk
 let bulk: any = [];
+
 //loop through each city and create and push two objects into the array in each loop
 //first object sends the index and type you will be saving the data as
 //second object is the data you want to index
@@ -63,8 +69,10 @@ cities.forEach((city: any) => {
       _type: "cities_list",
     },
   });
+
   bulk.push(city);
 });
+
 //perform bulk indexing of the data passed
 loadIndexclient.bulk({ body: bulk }, function (err: any, response: any) {
   if (err) {

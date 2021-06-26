@@ -6,10 +6,10 @@
   "scripts": {
     "build": "npm run-script format && tsc ",
     "test": "jest --coverage",
-    "start": "node ./dist/src/expressServer.js",
-    "start:all:first": "npm run prebuild && npm run build && npm run load_data && npm run open && npm run start ",
+    "start": "nodemon ./dist/src/expressServer.js",
+    "start:all:first": "npm run prebuild && npm run build && npm run load && npm run open && npm run start ",
     "start:all:again": "npm run prebuild && npm run build && npm run open && npm run start ",
-    "load_data": "node ./dist/src/loadElaticSearchIndex.js",
+    "load": "node ./dist/src/loadElasticSearchIndex.js",
     "format": "prettier --write ./**/*.ts ",
     "copy_files": "cpy ./view/**.* dist/src/view",
     "clean": "rimraf dist",
@@ -36,6 +36,7 @@
     "@types/node": "^14.0.24",
     "cpy-cli": "^3.1.1",
     "make-dir-cli": "^2.0.0",
+    "nodemon": "^2.0.7",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   }

@@ -69,3 +69,5 @@ This is a one-time action to load city list into ElasticSearch index.
 ## Known issues
 
 When you query, there is no visual indicator blocking UI - just wait...
+
+credits goes to : https://github.com/diberry/elastic-search-express
